@@ -3,45 +3,48 @@
  * @precon - timeline must be fully constructed and layed out
  */
 
-TimelineBandZoomBar = function(tl, bandNumber) {
+TimelineBandZoomBar = function(tl, bandNumber, offset) {
+    this._offset = offset;
     this._timeline = tl;
     this._document = this._timeline.getDocument();
     this._bandNumber = bandNumber;
     this._bandInfo = this._timeline._bandInfos[bandNumber];
     this._zoomStepsLength = this._bandInfo.zoomSteps.length;
     this._bandId = "timeline-band-" + bandNumber;
-    this._sliderIconSelector = "#timeline-band-" + bandNumber + "-ZoomSlider_icon"
+    this._containerDivId = tl._containerDiv.id;
+    this._stemDivId = this._containerDivId + "-" + this._bandId;
+    this._sliderIconSelector = "img#" + this._stemDivId + "-ZoomSlider_icon"
     this._sliderStepPx = 11;
       
     var zoomInDiv = this._document.createElement("div");                 
-    zoomInDiv.id = "timeline-band-" + bandNumber + "-ZoomIn"; 
+    zoomInDiv.id = this._stemDivId + "-ZoomIn"; 
     zoomInDiv.className = "ZoomIn";
     this._timeline.addDiv(zoomInDiv);
     
     var zoomInElmt = this._document.createElement("img");
-    zoomInElmt.id = "timeline-band-" + bandNumber + "-ZoomIn_icon";
+    zoomInElmt.id = this._stemDivId + "-ZoomIn_icon";
     zoomInElmt.className = "ZoomIn_icon"; 
     zoomInElmt.setAttribute("src", "img/hzoom-plus-mini.png");
     zoomInDiv.appendChild(zoomInElmt);
 
     var zoomSliderDiv = this._document.createElement("div");
-    zoomSliderDiv.id = "timeline-band-" + bandNumber + "-ZoomSlider";
+    zoomSliderDiv.id = this._stemDivId + "-ZoomSlider";
     zoomSliderDiv.className = "ZoomSlider";
     this._timeline.addDiv(zoomSliderDiv);
     
     var zoomSliderElmt = this._document.createElement("img");
-    zoomSliderElmt.id = "timeline-band-" + bandNumber + "-ZoomSlider_icon";
+    zoomSliderElmt.id = this._stemDivId + "-ZoomSlider_icon";
     zoomSliderElmt.className = "ZoomSlider_icon"; 
     zoomSliderElmt.setAttribute("src", "img/hslider.png");
     zoomSliderDiv.appendChild(zoomSliderElmt);
     
     var zoomOutDiv = this._document.createElement("div");
-    zoomOutDiv.id = "timeline-band-" + bandNumber + "-ZoomOut";
+    zoomOutDiv.id = this._stemDivId + "-ZoomOut";
     zoomOutDiv.className = "ZoomOut";
     this._timeline.addDiv(zoomOutDiv);
     
     var zoomOutElmt = this._document.createElement("img");
-    zoomOutElmt.id = "timeline-band-" + bandNumber + "-ZoomOut";
+    zoomOutElmt.id = this._stemDivId + "-ZoomOut";
     zoomOutElmt.className = "ZoomOut_icon";  
     zoomOutElmt.setAttribute("src", "img/hzoom-minus-mini.png");
     zoomOutDiv.appendChild(zoomOutElmt);
@@ -82,7 +85,10 @@ TimelineBandZoomBar.prototype._onSliderClick = function(innerFrame, evt, target)
         this._lastScrollTime = now;    // prevent bubble
         
         var divXPos = evt.clientX;
-        var theZoomPos = Math.floor((divXPos - 80) / this._sliderStepPx);
+	    var offsetx = this._offset;
+	    var stepPx = this._sliderStepPx;
+	    
+        var theZoomPos = Math.floor((divXPos - this._offset) / this._sliderStepPx);
         	    
         if(theZoomPos > (this._zoomStepsLength - 1)){
             theZoomPos = (this._zoomStepsLength - 1);
@@ -186,7 +192,7 @@ function nthroot(x, n) {
 }
 
 // utitliy function to calculate the step values
-// N.B. only works for DECADE to CENTURY values
+// N.B. works for same unit or unit switch from DECADE to CENTURY 
 function initZoomSteps(noOfSteps, greatestMag, leastMag){
     var newZoomSteps;
                 
@@ -207,7 +213,7 @@ function initZoomSteps(noOfSteps, greatestMag, leastMag){
                 var theStepData = new Object();
                 var stepValue = Math.round(leastMag.pixelsPerInterval * Math.pow(1 + ratio, i));
                         
-                if(stepValue > 500){
+                if(stepValue > 500 && greatestMag.unit != leastMag.unit){
                     theStepData.pixelsPerInterval = Math.floor(stepValue/10);
                     theStepData.unit = greatestMag.unit;
                 } else {
@@ -222,3 +228,6 @@ function initZoomSteps(noOfSteps, greatestMag, leastMag){
     
     return newZoomSteps;
 }
+
+
+

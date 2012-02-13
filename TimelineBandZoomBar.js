@@ -3,8 +3,7 @@
  * @precon - timeline must be fully constructed and layed out
  */
 
-TimelineBandZoomBar = function(tl, bandNumber, offset) {
-    this._offset = offset;
+TimelineBandZoomBar = function(tl, bandNumber) {
     this._timeline = tl;
     this._document = this._timeline.getDocument();
     this._bandNumber = bandNumber;
@@ -26,6 +25,7 @@ TimelineBandZoomBar = function(tl, bandNumber, offset) {
     zoomInElmt.className = "ZoomIn_icon"; 
     zoomInElmt.setAttribute("src", "img/hzoom-plus-mini.png");
     zoomInDiv.appendChild(zoomInElmt);
+    this.zoomInElmt = zoomInElmt;
 
     var zoomSliderDiv = this._document.createElement("div");
     zoomSliderDiv.id = this._stemDivId + "-ZoomSlider";
@@ -83,12 +83,15 @@ TimelineBandZoomBar.prototype._onSliderClick = function(innerFrame, evt, target)
     if (!this._lastScrollTime || ((now - this._lastScrollTime) > 100)) {
         // limit actions due to FF3 sending multiple events back to back
         this._lastScrollTime = now;    // prevent bubble
-        
-        var divXPos = evt.clientX;
-	    var offsetx = this._offset;
-	    var stepPx = this._sliderStepPx;
 	    
-        var theZoomPos = Math.floor((divXPos - this._offset) / this._sliderStepPx);
+	var position = $(this.zoomInElmt).offset(); // position = { left: 42, top: 567 }
+        var elmtWidth = $(this.zoomInElmt).width();
+	    
+        var divXPos = evt.clientX;
+	var offsetx = position.left + elmtWidth;
+	var stepPx = this._sliderStepPx;
+	    
+        var theZoomPos = Math.floor((divXPos - offsetx) / this._sliderStepPx);
         	    
         if(theZoomPos > (this._zoomStepsLength - 1)){
             theZoomPos = (this._zoomStepsLength - 1);

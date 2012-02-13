@@ -76,7 +76,7 @@
                 tl.loadXML("battles.xml", function(xml, url) { eventSource.loadXML(xml, url); });
                 var url = '.'; // The base url for image, icon and background image
  
-                var tlZoomBar = new TimelineBandZoomBar(tl, 0, 150);
+                var tlZoomBar = new TimelineBandZoomBar(tl, 0);
                 tl.ZoomBar = tlZoomBar;
                 tl.layout(); // display the Timeline
                 tl.finishedEventLoading();     
@@ -127,16 +127,18 @@
 			type: "kml",     // Data to be loaded in KML - must be a local URL
 			options: {
 			    url: "./kml/fife_jazz.kml", // KML file to load
-			   extendedData: ["LocationName",  "DateString", "TimeString", "Url"],
+			   extendedData: ["LocationName",  "DateString", "TimeString", "Url","LatLonStr"],
 			    tagMap: {
+				"LatLonStr":"directions_link",
 				"Url":"wiki_link"
 			    },
 			    openInfoWindow: TimeMapItem.openInfoWindowCombined,
 			     // template for loaded data
-			    infoTemplate: '<div style="font-size:small"><strong>{{LocationName}}</strong></div><br>' +
-					  '<div style="font-size:small"><strong><a href="{{wiki_link}}" target="_blank">{{title}}</a></strong><br>' +
+			    infoTemplate: '<div style="font-size:small"><strong>{{LocationName}}</strong><br>' +
+					  '<a href="http://maps.google.com/maps?ll={{directions_link}}&spn=0.025,0.025&t=m&q={{directions_link}}" target="_blank">(get directions)</a></div>' +
+					  '<p><div style="font-size:small"><strong><a href="{{wiki_link}}" target="_blank">{{title}}</a></strong><br>' +
 					  '<strong>Time: </strong>{{TimeString}}<br>' +
-					  '<strong>Date: </strong>{{DateString}}</div>'
+					  '<strong>Date: </strong>{{DateString}}</div></p>'
 			}
 		    }
 		],
@@ -173,7 +175,7 @@
     
 	var theTimeline_fjz = tm_fjz.timeline;
 	var theBandNo_fjz = 0;
-	var tlZoomBar_fjz = new TimelineBandZoomBar(theTimeline_fjz, theBandNo_fjz, 170);
+	var tlZoomBar_fjz = new TimelineBandZoomBar(theTimeline_fjz, theBandNo_fjz);
 	theTimeline_fjz.ZoomBar = tlZoomBar_fjz; 
 	
 
@@ -259,7 +261,7 @@
     
 	var theTimeline = tm.timeline;
 	var theBandNo = 0;
-	var tmZoomBar = new TimelineBandZoomBar(theTimeline, theBandNo, 170);
+	var tmZoomBar = new TimelineBandZoomBar(theTimeline, theBandNo);
 	theTimeline.ZoomBar = tmZoomBar;  
 	
 });
@@ -308,7 +310,7 @@
 	<p>
 	The timeline is implemented using a <a href="http://www.simile-widgets.org/timeline/">Simile Timeline</a> version 2.3.0. 
 	Normally to zoom in and out in this timeline you use the mouse wheel.
-	I added a zoombar to make it more obvious that a zoom capability was available. I have also added a helper function that calculates the reuired zoom steps.
+	I added a zoombar to make it more obvious that a zoom capability was available. I have also added a helper function that calculates the required zoom steps.
 	The code for the zoombar is in <a href="https://github.com/alan-leslie/Timeline-zoombar">my github repository</a>
 	</p>
 	
@@ -350,8 +352,14 @@
 	<p>
 	If you click on an item in the map (for example the Byre Theatre in St Andrews) multiple events are displayed.
 	However if you click on an item in the timeline only the particular event is displayed. 
-	if you change the timeframe by zooming out and panning the data shown on clicking on the map items is reduced.
-	So for example if you zoom out and pan so tht only Frday the 3rd of February isshown in the timeline, then click on the Byre theatre again, the details for only one event is shown.
+	if you change the timeframe by zooming out and panning the timeline the data shown on clicking on the map items is changed.
+	So for example if you zoom out and pan so that only Frday the 3rd of February is shown in the timeline, then click on the Byre theatre again, the details for only one event is shown.
+	</p>
+	
+	<p>
+	To get directions to the venue, click on the item then click on the 'get directions' link. 
+	This will take you to a google maps page with the location marked. 
+	You can then click on the get directions tab and select the start location.
 	</p>
 
      <div id="timemap_fjz">

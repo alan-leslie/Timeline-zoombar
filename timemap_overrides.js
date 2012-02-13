@@ -53,17 +53,22 @@ TimeMapItem.openInfoWindowCombined = function() {
 	if(allItemsHere.length > 1){
 		allItemsHere.sort(sortItemByTimeFunction);
 		
-		html = allItemsHere[0].getInfoHtml();
+		var firstHtml = allItemsHere[0].getInfoHtml();
+		var locIndex = firstHtml.indexOf('</a></div>');
+				
+		 if(locIndex > 0 && locIndex + 10 < firstHtml.length){
+		     var htmlJustLocation = firstHtml.substring(0, locIndex + 10);
+			 html = htmlJustLocation;
+		 }
 		
-		var i = 1;
-		for(i=1; i<allItemsHere.length; i++) { 
+		var i = 0;
+		for(i=0; i<allItemsHere.length; i++) { 
                     var currentItem = allItemsHere[i]; 
 		    var otherHtml  = currentItem.getInfoHtml();
-		    var locIndex = otherHtml.indexOf('<br>');
+		    var locEndIndex = otherHtml.indexOf('</a></div>');
 				
-		     if(locIndex > 0 && locIndex + 4 < otherHtml.length){
-			        html = html + "<br>";
-				var htmlMinusLocation = otherHtml.substring(locIndex + 4, otherHtml.length - 1);
+		     if(locEndIndex > 0 && locEndIndex + 10 < otherHtml.length){
+				var htmlMinusLocation = otherHtml.substring(locEndIndex + 10, otherHtml.length);
 				html = html + htmlMinusLocation;
 		     }
                 }

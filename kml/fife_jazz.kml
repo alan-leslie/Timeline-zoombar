@@ -51,6 +51,9 @@ Fife Youth Jazz Orchestras and Grace Black/Dave Watt
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/fife-youth-jazz-orchestras-and-grace-blackdave-watt.html</value>
 </Data>
+<Data name="LatLonStr">
+<value>56.274678,-3.273937</value>
+</Data>
 </ExtendedData>
 <Point>
 <coordinates>-3.273937,56.274678</coordinates>
@@ -79,6 +82,9 @@ Red Stripe Band
 </Data>
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/red-stripe-band.html</value>
+</Data>
+<Data name="LatLonStr">
+<value>56.071934,-3.453715</value>
 </Data>
 </ExtendedData>
 <Point>
@@ -109,6 +115,9 @@ Be a Hobo - The Music of Moondog
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/be-a-hobo-the-music-of-moondog.html</value>
 </Data>
+<Data name="LatLonStr">
+<value>56.071934,-3.453715</value>
+</Data>
 </ExtendedData>
 <Point>
 <coordinates>-3.453715,56.071934</coordinates>
@@ -137,6 +146,9 @@ Maggie Bell and Blues N Trouble
 </Data>
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/maggie-bell-and-blues-n-trouble.html</value>
+</Data>
+<Data name="LatLonStr">
+<value>56.071934,-3.453715</value>
 </Data>
 </ExtendedData>
 <Point>
@@ -167,6 +179,9 @@ Kyle Eastwood Band / Dan Nimmer
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/kyle-eastwood-band-dan-nimmer.html</value>
 </Data>
+<Data name="LatLonStr">
+<value>56.071934,-3.453715</value>
+</Data>
 </ExtendedData>
 <Point>
 <coordinates>-3.453715,56.071934</coordinates>
@@ -195,6 +210,9 @@ Joe Temperley Quartet featuring Dan Nimmer
 </Data>
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/joe-temperley-quartet-featuring-dan-nimmer.html</value>
+</Data>
+<Data name="LatLonStr">
+<value>56.339058,-2.791235</value>
 </Data>
 </ExtendedData>
 <Point>
@@ -225,6 +243,9 @@ Angela King
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/angela-king.html</value>
 </Data>
+<Data name="LatLonStr">
+<value>56.339058,-2.791235</value>
+</Data>
 </ExtendedData>
 <Point>
 <coordinates>-2.791235,56.339058</coordinates>
@@ -253,6 +274,9 @@ Kyle Eastwood
 </Data>
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/kyle-eastwood.html</value>
+</Data>
+<Data name="LatLonStr">
+<value>56.339058,-2.791235</value>
 </Data>
 </ExtendedData>
 <Point>
@@ -283,6 +307,9 @@ Batchelors of Jazz with guest Fionna Duncan
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/batchelors-of-jazz-with-guest-fionna-duncan.html</value>
 </Data>
+<Data name="LatLonStr">
+<value>56.261892,-2.62945</value>
+</Data>
 </ExtendedData>
 <Point>
 <coordinates>-2.62945,56.261892</coordinates>
@@ -311,6 +338,9 @@ King King, and John Alexander
 </Data>
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/king-king-and-john-alexander.html</value>
+</Data>
+<Data name="LatLonStr">
+<value>56.318816,-3.030757</value>
 </Data>
 </ExtendedData>
 <Point>
@@ -341,6 +371,9 @@ Richard Michael / Lorna Reid
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/richard-michael-lorna-reid.html</value>
 </Data>
+<Data name="LatLonStr">
+<value>56.134634,-3.210384</value>
+</Data>
 </ExtendedData>
 <Point>
 <coordinates>-3.210384,56.134634</coordinates>
@@ -369,6 +402,9 @@ Havana Swing + Greg Irons Quartet
 </Data>
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/havana-swing-greg-irons-quartet.html</value>
+</Data>
+<Data name="LatLonStr">
+<value>56.394412,-2.905143</value>
 </Data>
 </ExtendedData>
 <Point>
@@ -399,6 +435,9 @@ Brass Jaw
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/brass-jaw.html</value>
 </Data>
+<Data name="LatLonStr">
+<value>56.219651,-2.707872</value>
+</Data>
 </ExtendedData>
 <Point>
 <coordinates>-2.707872,56.219651</coordinates>
@@ -427,6 +466,9 @@ The BIG Dance
 </Data>
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/the-big-dance.html</value>
+</Data>
+<Data name="LatLonStr">
+<value>56.195722,-3.176755</value>
 </Data>
 </ExtendedData>
 <Point>
@@ -457,6 +499,9 @@ Fife Jazz Orchestra with Joe Temperley
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/fife-jazz-orchestra-with-special-guest-joe-temperley.html</value>
 </Data>
+<Data name="LatLonStr">
+<value>56.111915,-3.163998</value>
+</Data>
 </ExtendedData>
 <Point>
 <coordinates>-3.163998,56.111915</coordinates>
@@ -485,6 +530,9 @@ New York, New York
 </Data>
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/new-york-new-york.html</value>
+</Data>
+<Data name="LatLonStr">
+<value>56.111915,-3.163998</value>
 </Data>
 </ExtendedData>
 <Point>
@@ -515,6 +563,9 @@ The Fabulous Baker Boys
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/the-fabulous-baker-boys.html</value>
 </Data>
+<Data name="LatLonStr">
+<value>56.111915,-3.163998</value>
+</Data>
 </ExtendedData>
 <Point>
 <coordinates>-3.163998,56.111915</coordinates>
@@ -543,6 +594,9 @@ Deja Blue
 </Data>
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/deja-blue.html</value>
+</Data>
+<Data name="LatLonStr">
+<value>56.206626,-2.76672</value>
 </Data>
 </ExtendedData>
 <Point>
@@ -573,6 +627,9 @@ Mario Caribe Jazz Crusaders Timemachine
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/mario-caribe-jazz-crusaders-timemachine.html</value>
 </Data>
+<Data name="LatLonStr">
+<value>56.248357,-3.158988</value>
+</Data>
 </ExtendedData>
 <Point>
 <coordinates>-3.158988,56.248357</coordinates>
@@ -602,6 +659,9 @@ Fat Sams Band
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/fat-sams-band.html</value>
 </Data>
+<Data name="LatLonStr">
+<value>56.063393,-3.498459</value>
+</Data>
 </ExtendedData>
 <Point>
 <coordinates>-3.498459,56.063393</coordinates>
@@ -630,6 +690,9 @@ Martin Taylor and Jack Emblow
 </Data>
 <Data name="Url">
 <value>http://www.fifejazzfestival.com/2012-programme/artists/martin-taylor-and-jack-emblow.html</value>
+</Data>
+<Data name="LatLonStr">
+<value>56.292499,-3.230951</value>
 </Data>
 </ExtendedData>
 <Point>

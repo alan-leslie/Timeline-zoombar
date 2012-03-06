@@ -15,7 +15,18 @@ TimeMapItem.openInfoWindowCombined = function() {
     var item = this,
     html = item.getInfoHtml(),
     ds = item.dataset,
-    placemark = item.placemark;
+    placemark = item.placemark,
+	datasets = ds.timemap.datasets;
+	
+	var firstDataset = datasets["ds0"];
+	var secondDataset = datasets["ds1"];
+	var thirdDataset = datasets["ds2"];
+	var fourthDataset = datasets["ds3"];
+	var fifthDataset = datasets["ds4"];
+	var sixthDataset = datasets["ds5"];
+	var allDatasets = [firstDataset, secondDataset, thirdDataset, fourthDataset, fifthDataset, sixthDataset];
+	var allDatasetsLength = allDatasets.length;	
+	
     // scroll timeline if necessary
     if (!item.onVisibleTimeline()) {
         ds.timemap.scrollToDate(item.getStart());
@@ -31,23 +42,38 @@ TimeMapItem.openInfoWindowCombined = function() {
 	    var thisLat = thisLocation.lat;
 	    var thisLon = thisLocation.lon;
 	    var thisTitle = item.opts.title;
+	    var thisStartTime = item.getStartTime();
 	    
-	    for (var i = 0; i < ds.items.length; i++) {
-		var theItem = ds.items[i];
+	    for(var j = 0; j < allDatasetsLength; ++j){
+		    var theDataset = allDatasets[j];
+		    
+		    if(theDataset.visible){
+		    
+		    // check if the dataset is visible first
+	    
+	    var dsLength = theDataset.items.length;
+	    
+	    for (var i = 0; i < dsLength; i++) {
+		var theItem = theDataset.items[i];
 		var placemarkVisible = theItem.placemarkVisible;
 		var theLocation = theItem.placemark.location;
 		var theLat = theLocation.lat;
 		var theLon = theLocation.lon;
 		var theTitle = theItem.opts.title;
+	        var theStartTime = theItem.getStartTime();
 
-		if(placemarkVisible){
+
 		    if(theLat == thisLat && theLon == thisLon){
-			if(thisTitle != theTitle){
+			    		if(placemarkVisible){
+			if(!(thisTitle == theTitle &&
+			    thisStartTime == theStartTime)){
 				allItemsHere.push(theItem);
 			}
 		    }
 		}
 	    }
+    }
+         }
         }
 	
 	if(allItemsHere.length > 1){

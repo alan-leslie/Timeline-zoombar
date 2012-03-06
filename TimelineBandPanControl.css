@@ -6,48 +6,31 @@
         Styles for timeline zoombar components.
 */
 
-.ZoomIn {
+.PanLeft {
     left: 20px;
-    top: 85%; 
+    top: 75%; 
     width: 18px; 
     height: 18px; 
     position: absolute;
     z-index: 150;
 }
 
-.ZoomIn_icon {
+.PanLeft_icon {
     width: 18px; 
     height: 18px; 
     position: relative;
 }
 
-.ZoomSlider {
+.PanRight {
     left: 38px;
-    top: 85%; 
-    background-image: url("img/hzoombar.png");
-    width: 132px; 
-    height: 18px; 
-    position: absolute;
-    z-index: 150;
-}
-
-.ZoomSlider_icon {
-    top: -1px;
-    width: 9px; 
-    height: 20px; 
-    position: relative;
-}
-
-.ZoomOut {
-    left: 170px;
-    top: 85%; 
+    top: 75%; 
     width: 18px; 
     height: 18px; 
     position: absolute;
     z-index: 150;
 }
 
-.ZoomOut_icon {
+.PanRight_icon {
     width: 18px; 
     height: 18px; 
     position: relative;

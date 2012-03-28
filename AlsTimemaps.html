@@ -135,7 +135,7 @@
 			    openInfoWindow: TimeMapItem.openInfoWindowCombined,
 			     // template for loaded data
 			    infoTemplate: '<div style="font-size:small"><strong>{{LocationName}}</strong><br>' +
-					  '<a href="http://maps.google.com/maps?ll={{directions_link}}&spn=0.025,0.025&t=m&q={{directions_link}}" target="_blank">(get directions)</a></div>' +
+					  '<a href="http://maps.google.com/maps?ll={{directions_link}}&spn=0.025,0.025&t=m&q=to {{directions_link}}" target="_blank">(get directions)</a></div>' +
 					  '<p><div style="font-size:small"><strong><a href="{{wiki_link}}" target="_blank">{{title}}</a></strong><br>' +
 					  '<strong>Time: </strong>{{TimeString}}<br>' +
 					  '<strong>Date: </strong>{{DateString}}</div></p>'
@@ -278,7 +278,7 @@
         <ul>
           <li><a href="AlsProjects.html">Home</a></li>
           <li><a href="AlsScrapers.html">Scrapers</a></li>
-	  <li><a  href="AlsNetworks.html">Networks</a></li>
+	  <li><a  href="AlsMaps.html">Maps</a></li>
           <li><a>Timelines/maps</a></li>
           <li><a href="AlsWalk.html">Walkers</a></li>
 	  <li><a href="AlsClusters.html">Clustering</a></li>
@@ -353,7 +353,7 @@
 	If you click on an item in the map (for example the Byre Theatre in St Andrews) multiple events are displayed.
 	However if you click on an item in the timeline only the particular event is displayed. 
 	if you change the timeframe by zooming out and panning the timeline the data shown on clicking on the map items is changed.
-	So for example if you zoom out and pan so that only Frday the 3rd of February is shown in the timeline, then click on the Byre theatre again, the details for only one event is shown.
+	So for example if you zoom out and pan so that only Friday the 3rd of February is shown in the timeline, then click on the Byre theatre again, the details for only one event is shown.
 	</p>
 	
 	<p>
@@ -370,12 +370,15 @@
           <div id="map_fjz" class="map"></div>
         </div>
     </div>
+         
+	<p>
+	Note that another (more crowded) example is of the <a href="EdSciTimemap.html">Edinburgh Science Festival events</a>. 
 
 	<h3 id="implementation_details">Implementation</h3>
 
 	<p>
-	The timemap is implemented using a <a href="http://code.google.com/p/timemap/">MIT timemap</a> version 2.0.1. 
-	The map being used is <a href="http://openlayers.org/">OpenLayers</a> with <a href="http://www.openstreetmap.org/">OpenStreetMap</a>.
+	The timemap is a <a href="http://code.google.com/p/timemap/">MIT timemap</a> version 2.0.1. 
+	The map framework is <a href="http://openlayers.org/">OpenLayers</a> with <a href="http://www.openstreetmap.org/">OpenStreetMap</a> layer.
 	The MIT timemap has been written so that it is simple to port the map to Google Maps or Bing Maps.
 	</p>
 	

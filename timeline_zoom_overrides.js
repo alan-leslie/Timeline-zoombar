@@ -168,7 +168,8 @@ Timeline._Band.prototype.zoomto = function(zoomTo, timeline_start, timeline_stop
     var afterZoomCentreDate = this.getCenterVisibleDate();
     var afterZoomCentreDateDatePos = this._ether.dateToPixelOffset(afterZoomCentreDate);
    
-    if(zoomTo > prevZoomIndex){
+    if(zoomTo > prevZoomIndex && !(timeline_start === null && timeline_stop === null)){
+
         var hasMovedToStopLimit = false;  // similar to at timeline start || stop
         var hasMovedToStartLimit = false;  // similar to at timeline start || stop
 

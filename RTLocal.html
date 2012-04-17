@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+    
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+        <title>Rubens Timemap</title>
+        <link rel="stylesheet" href="./master.css" type="text/css" media="screen" charset="utf-8">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
+        <script type="text/javascript" src="OpenLayers-2.10/OpenLayers.js"></script>
+        <script type="text/javascript" src="timemap/lib/mxn/mxn.js?(openlayers)"></script>
+        <!-- <script type="text/javascript" src="http://static.simile.mit.edu/timeline/api-2.3.0/timeline-api.js?bundle=true"></script> -->
+        <!-- changes made locally to correct issue 278 - iphone gestures -->
+        <script src="timeline_2.3.0/src/webapp/api/timeline-api.js?bundle=false" type="text/javascript"></script>
+        <script type="text/javascript" src="timemap/src/timemap.js"></script>
+        <script type="text/javascript" src="timemap/src/manipulation.js"></script>
+        <script type="text/javascript" src="timemap/src/param.js"></script>
+        <script type="text/javascript" src="timemap/src/loaders/xml.js"></script>
+        <script type="text/javascript" src="timemap/src/loaders/kml.js"></script>
+        <!-- Load the customisations required for the zoombar -->
+        <script src="./timeline_zoom_overrides.js" type="text/javascript"></script>
+        <script src="./TimelineBandZoomBar.js" type="text/javascript"></script>
+        <script src="./TimelineBandPanControl.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="./timemaps.css" type="text/css">
+        <link rel="stylesheet" href="./TimelineBandZoomBar.css" type="text/css">
+        <link rel="stylesheet" href="./TimelineBandPanControl.css" type="text/css">
+        <!-- Load the customisations required to get the correct multiple event behaviour -->
+        <script src="./timemap_artists_overrides.js" type="text/javascript"></script>
+        <!-- Load mobile browser detection so that the correct directions string can be set -->
+        <script type="text/javascript" src="./detectmobilebrowser.js"></script>
+        <script type="text/javascript">
+            var tm_fjz;
+
+            $(function () {
+ 	        var theme1 = Timeline.ClassicTheme.create();
+                theme1.autoWidth = false;
+		theme1.timeline_start = new Date(Date.UTC(1570, 1,1));
+	        theme1.timeline_stop  = new Date(Date.UTC(1670, 1, 1));
+                theme1.mouseWheel = 'zoom';
+                theme1.autoWidth = false;
+                theme1.color = "green";
+    theme1.event.track.gap = -8;
+    theme1.event.tape.height = 16;
+		
+		var d = "Sat 01 Jan 1600 13:00:00 GMT-0000";
+		var startDate = new Date(Date.UTC(1570, 1,1));
+		var endDate = new Date(Date.UTC(1670, 1,1));		
+
+        var greatestMag = {
+	pixelsPerInterval : 450,
+	unit : Timeline.DateTime.DECADE
+	},
+	leastMag = {
+	pixelsPerInterval : 850,
+	unit : Timeline.DateTime.CENTURY
+	};
+	var theZoomSteps = initZoomSteps(12, greatestMag, leastMag);
+	var theZoomIndex = 5;
+	var theIntervalUnit = theZoomSteps[theZoomIndex].unit;
+	var theIntervalPixels = theZoomSteps[theZoomIndex].pixelsPerInterval;
+	
+	TimeMap.themes.myTheme = TimeMapTheme.create("green", {lineWeight:2, timeline_start: startDate, timeline_stop: endDate}); 
+	
+        var       theMapZoom = 5,
+                    lon = 4.40914,
+                    lat = 51.217153,
+                    theMapCenter = new mxn.LatLonPoint();
+
+                theMapCenter.lon = lon;
+                theMapCenter.lat = lat;
+                theMapCenter.lng = lon;
+
+                tm_fjz = TimeMap.init({
+                    mapId: "map_fjz",
+                    // Id of map div element (required)
+                    timelineId: "timeline_fjz",
+                    // Id of timeline div element (required)
+                    scrollTo: d,
+                    options: {
+		    theme : "myTheme",
+                        eventIconPath: "timemap/images/",
+                        centerOnItems: false,
+                        mapCenter: theMapCenter,
+                        mapZoom: theMapZoom
+                    },
+                    datasets: [{
+                        title: "Rubens placemark",
+                       // theme: theme1,
+                        type: "kml",
+                        // Data to be loaded in KML - must be a local URL
+                        options: {
+			    noEventLoad : true,
+			    openInfoWindow: TimeMapItem.openInfoWindowMap,
+                            url: "./kml/multi_map.kml" ,
+			    
+                            // KML file to load
+                            extendedData: ["LocationName", "DateString", "Url"],
+                            tagMap: {
+                                "Url": "wiki_link"
+                            },
+                            openInfoWindow: TimeMapItem.openInfoWindowMap,
+                            // template for loaded data
+                            infoTemplate: '<div style="font-size:small"><strong><a href="{{wiki_link}}" target="_blank">{{title}}</a></strong><br>' + 
+			                                              '<div style="font-size:small"><strong>{{LocationName}}</strong><br>' + 
+								     '<strong>Date: </strong>{{DateString}}</div><br>'
+		       }
+		       },
+		       {
+                        title: "Rubens timeline",
+                        //theme: "green",
+                        type: "kml",
+                        // Data to be loaded in KML - must be a local URL
+                        options: {
+			    noPlacemarkLoad : true,
+			    openInfoWindow: TimeMapItem.openInfoWindowTimeline,
+                            url: "./kml/multi_timeline.kml"
+                            // KML file to load
+ 		       }
+                    }],
+                    bandInfo: [{
+                        width: "100%",
+                        intervalUnit: theIntervalUnit,
+                        intervalPixels: theIntervalPixels,
+                        date: d,
+                        theme: theme1,
+                        layout: 'original',
+                        // original, overview, detailed
+                        zoomIndex: theZoomIndex,
+                        zoomSteps: theZoomSteps
+                    }]
+                });
+		
+                Timeline.OriginalEventPainter.prototype._showBubble = function (x, y, evt) {
+                    evt.item.fromTimeline = true;
+                    evt.item.openInfoWindow();
+                };
+
+                /*tm_fjz.addFilter("timeline", function (item) {
+                    // determine whether the item should be shown, based on map position
+                    var bounds = item.map.getBounds();
+                    // note that this isn't going to work well for polygons and polylines
+                    return bounds.contains(item.getInfoPoint());
+                });
+
+                // add a listener to make the filter run when the map bounds change
+                tm_fjz.map.addEventListener("moveend", function () {
+                    tm_fjz.filter("timeline");
+                });*/
+
+                var theTimeline_fjz = tm_fjz.timeline,
+                    theBandNo_fjz = 0,
+                    tlZoomBar_fjz = new TimelineBandZoomBar(theTimeline_fjz, theBandNo_fjz),
+                    tlPanControl_fjz = new TimelineBandPanControl(theTimeline_fjz, theBandNo_fjz);
+
+                theTimeline_fjz.ZoomBar = tlZoomBar_fjz;
+                theTimeline_fjz.PanControl = tlPanControl_fjz;
+		                });
+        </script>
+	
+	<style>
+	    /* This is necessary to get old-style duration events */
+    .timeline-event-label {
+        margin-top: -15px;
+        margin-left: 4px;
+        line-height: 12px;
+    }
+    </style>
+    </head>
+    
+    <body>
+        <div id="wrapper">
+            <div id="content">
+                <h2 id="Ed_sci_festival_timemap">Rubens Timemap</h2>
+                <div id="timemap_fjz">
+                    <div id="timelinecontainer_fjz">
+                        <div id="timeline_fjz" class="timeline"></div>
+                    </div>
+                    <div id="mapcontainer_fjz">
+                        <div id="map_fjz" class="map"></div>
+                    </div>
+                </div>
+                <p class="description">The timemap is implemented using a
+                    <a href="http://code.google.com/p/timemap/">MIT timemap</a> version 2.0.1. The map being used is
+                    <a href="http://openlayers.org/">OpenLayers</a> with
+                    <a href="http://www.openstreetmap.org/">OpenStreetMap</a>.</p>
+                <p class="description">
+                    <a href="mailto:alan_leslie@ymail.com?Subject=Edinburgh Science festival timemap">
+	Send Mail</a>
+                </p>
+    </body>
+
+</html>

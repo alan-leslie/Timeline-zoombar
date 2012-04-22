@@ -8,7 +8,7 @@
 
 .ZoomIn {
     left: 20px;
-    top: 85%; 
+    top: 15%; 
     width: 18px; 
     height: 18px; 
     position: absolute;
@@ -23,7 +23,7 @@
 
 .ZoomSlider {
     left: 38px;
-    top: 85%; 
+    top: 15%; 
     background-image: url("img/hzoombar.png");
     width: 132px; 
     height: 18px; 
@@ -40,7 +40,7 @@
 
 .ZoomOut {
     left: 170px;
-    top: 85%; 
+    top: 15%; 
     width: 18px; 
     height: 18px; 
     position: absolute;

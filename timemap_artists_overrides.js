@@ -150,4 +150,17 @@ TimeMapItem.openInfoWindowMap = function () {
             item.map.openBubble(item.getInfoPoint(), html);
             item.map.tmBubbleItem = item;
         }
+    };
+    
+TimeMapItem.closeInfoWindowTimeline = function() {
+    var item = this;
+    if (item.getType() == "marker") {
+        //item.placemark.closeBubble();
+    } else {
+        if (item == item.map.tmBubbleItem) {
+            item.map.closeBubble();
+           // item.map.tmBubbleItem = null;
+        }
     }
+};
+ 

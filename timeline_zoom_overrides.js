@@ -260,4 +260,4 @@ Timeline.LinearEther.prototype.zoomto = function(zoomTo) {
     }
 
     return netIntervalChange;
-}
+};
